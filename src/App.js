@@ -5,13 +5,14 @@ import './App.css';
 import DestinationMarkers from './DestinationMarkers/DestinationMarkers';
 import CurrentPositionMarker from './CurrentPositionMarker/CurrentPositionMarker';
 import MapStyle from './mapStyle';
+import EllisCreekFarmLogo from './elliscreekfarmlogo.png';
 
 require("dotenv").config();
 
 function Map() {
   return (
     <div>
-      <img src="https://media.discordapp.net/attachments/271197812182614016/752404465759420526/elliscreekfarmlogo_web_470.png" alt="Ellis Creek Farm Logo" class="MapLogo"></img>
+      <img src={EllisCreekFarmLogo} alt="Ellis Creek Farm Logo" class="MapLogo"></img>
       <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: -36.848461, lng: 174.763336 }} //auckland city co-ordinates
