@@ -4,20 +4,26 @@ import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-ma
 import './App.css';
 import DestinationMarkers from './DestinationMarkers/DestinationMarkers';
 import CurrentPositionMarker from './CurrentPositionMarker/CurrentPositionMarker';
+import MapStyle from './mapStyle';
+import EllisCreekFarmLogo from './elliscreekfarmlogo.png';
 
 require("dotenv").config();
 
 function Map() {
   return (
+    <div>
+      <img src={EllisCreekFarmLogo} alt="Ellis Creek Farm Logo" class="MapLogo"></img>
       <GoogleMap
       defaultZoom={10}
       defaultCenter={{ lat: -36.848461, lng: 174.763336 }} //auckland city co-ordinates
+      options={{styles: MapStyle, disableDefaultUI: true, zoomControl: true}}
       >
         <DestinationMarkers lat={-36.756850} lng={174.712830} />
         <DestinationMarkers lat={-36.755080} lng={174.719890} />
         <DestinationMarkers lat={-36.755960} lng={174.725150} />
         <CurrentPositionMarker/>
       </GoogleMap>
+    </div>
   );
 }
 
