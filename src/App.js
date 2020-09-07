@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
-import { GoogleMap, withScriptjs, withGoogleMap, Marker } from "react-google-maps";
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-maps";
 import './App.css';
+import DestinationMarkers from './DestinationMarkers/DestinationMarkers';
 import CurrentPositionMarker from './CurrentPositionMarker/CurrentPositionMarker';
 
 require("dotenv").config();
@@ -12,6 +13,9 @@ function Map() {
       defaultZoom={10}
       defaultCenter={{ lat: -36.848461, lng: 174.763336 }} //auckland city co-ordinates
       >
+        <DestinationMarkers lat={-36.756850} lng={174.712830} />
+        <DestinationMarkers lat={-36.755080} lng={174.719890} />
+        <DestinationMarkers lat={-36.755960} lng={174.725150} />
         <CurrentPositionMarker/>
       </GoogleMap>
   );
