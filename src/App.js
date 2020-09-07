@@ -3,59 +3,38 @@ import logo from './logo.svg';
 import { GoogleMap, withScriptjs, withGoogleMap, Marker, } from "react-google-maps";
 import './App.css';
 import DestinationMarkers from './DestinationMarkers/DestinationMarkers';
-
+import CurrentPositionMarker from './CurrentPositionMarker/CurrentPositionMarker';
 
 require("dotenv").config();
 
 function Map() {
   return (
       <GoogleMap
-      onClick = {(event) =>{
-        console.log(event);
-      }}
-        defaultZoom={10}
-        defaultCenter={{ lat: -36.848461, lng: 174.763336 }} //auckland city co-ordinates
-        
+      defaultZoom={10}
+      defaultCenter={{ lat: -36.848461, lng: 174.763336 }} //auckland city co-ordinates
       >
-      
-      <DestinationMarkers lat={-36.756850} lng={174.712830} />
-      <DestinationMarkers lat={-36.755080} lng={174.719890} />
-      <DestinationMarkers lat={-36.755960} lng={174.725150} />
-
+        <DestinationMarkers lat={-36.756850} lng={174.712830} />
+        <DestinationMarkers lat={-36.755080} lng={174.719890} />
+        <DestinationMarkers lat={-36.755960} lng={174.725150} />
+        <CurrentPositionMarker/>
       </GoogleMap>
-     
   );
 }
 
 const WrappedMap = withScriptjs(withGoogleMap(Map));
 
 function App() {
+  console.log(process.env.REACT_APP_GOOGLE_KEY);
   return (
-    <div>
-    <div style={{ width: "100vw", height: "50vh"}}>
-      <WrappedMap 
-      googleMapURL={"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCWKV_oO0Jo8ih5KMrT4H0Eyvf4cPBNVIU"}
-      loadingElement={<div style={{ height: "100%" }}/>}
-      containerElement={<div style={{ height: "100%" }}/>}
-      mapElement={<div style={{ height: "100%" }}/>}
-      ></WrappedMap>
-    </div>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div style={{ width: "100vw", height: "100vh"}}>
+        <WrappedMap 
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+        loadingElement={<div style={{ height: "100%" }}/>}
+        containerElement={<div style={{ height: "100%" }}/>}
+        mapElement={<div style={{ height: "100%" }}/>}
+        />
+      </div>
     </div>
   );
 }
